@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Time Browser - Explore the current time in cities and regions around the world."
+    >
+
+    <title>Time Browser</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- =========================================
+         Background Layer
+         ========================================= -->
+
+    <div id="backgroundLayer" class="background-layer">
+
+        <div
+            id="backgroundImage"
+            class="background-image"
+        ></div>
+
+        <iframe
+            id="backgroundVideo"
+            class="background-video"
+            title="Background video"
+            allow="autoplay; fullscreen"
+            loading="lazy"
+        ></iframe>
+
+        <div class="background-overlay"></div>
+
+    </div>
+
+    <main class="app">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <span class="brand-icon">
+                    ◷
+                </span>
+
+                <h1>
+                    TIME BROWSER
+                </h1>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    id="backgroundSettings"
+                    class="header-button"
+                    type="button"
+                    aria-label="Background settings"
+                >
+                    ⚙
+                </button>
+
+
+                <button
+                    id="themeToggle"
+                    class="theme-toggle"
+                    type="button"
+                    aria-label="Toggle dark and light mode"
+                >
+                    ☾
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- Search -->
+        <section class="search-section">
+
+            <label for="locationSearch" class="search-label">
+                Search a city or region
+            </label>
+
+            <div class="search-box">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="text"
+                    id="locationSearch"
+                    placeholder="Search city or region..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="clearSearch"
+                    class="clear-search hidden"
+                    type="button"
+                    aria-label="Clear search"
+                >
+                    ×
+                </button>
+
+            </div>
+
+            <div
+                id="searchResults"
+                class="search-results hidden"
+            ></div>
+
+        </section>
+
+
+        <!-- Main Clock -->
+        <section class="main-clock">
+
+            <div class="location-info">
+
+                <h2 id="mainCity">
+                    Jakarta
+                </h2>
+
+                <p id="mainRegion">
+                    Indonesia
+                </p>
+
+            </div>
+
+
+            <div
+                id="mainTime"
+                class="main-time"
+            >
+                00:00:00
+            </div>
+
+
+            <div
+                id="mainDate"
+                class="main-date"
+            >
+                Monday, January 1, 2026
+            </div>
+
+
+            <div
+                id="mainTimezone"
+                class="main-timezone"
+            >
+                UTC +07:00
+            </div>
+
+        </section>
+
+
+        <!-- Saved Locations -->
+        <section class="locations-section">
+
+            <div class="section-heading">
+
+                <h3>
+                    World Clocks
+                </h3>
+
+            </div>
+
+
+            <div
+                id="clockGrid"
+                class="clock-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- Empty State -->
+        <section
+            id="emptyState"
+            class="empty-state hidden"
+        >
+            <div class="empty-icon">
+                ◷
+            </div>
+
+            <h3>
+                No locations added
+            </h3>
+
+            <p>
+                Search for a city or region to add a clock.
+            </p>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <p>
+                Time Browser
+            </p>
+
+            <p>
+                Time data is calculated using your browser's timezone support.
+            </p>
+
+        </footer>
+
+                <!-- =========================================
+            Background Manager Modal
+            ========================================= -->
+
+        <div
+            id="backgroundModal"
+            class="modal hidden"
+        >
+
+            <div
+                class="modal-backdrop"
+                id="modalBackdrop"
+            ></div>
+
+
+            <div
+                class="background-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="backgroundModalTitle"
+            >
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <h2 id="backgroundModalTitle">
+                            Background
+                        </h2>
+
+                        <p id="backgroundLocationName">
+                            Jakarta
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        id="closeBackgroundModal"
+                        class="modal-close"
+                        type="button"
+                        aria-label="Close background settings"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <!-- Source Type -->
+
+                <div class="background-form">
+
+                    <label class="form-label">
+                        Background source
+                    </label>
+
+
+                    <div class="source-options">
+
+                        <label class="source-option">
+
+                            <input
+                                type="radio"
+                                name="backgroundType"
+                                value="image"
+                                checked
+                            >
+
+                            <span>
+                                Image URL
+                            </span>
+
+                        </label>
+
+
+                        <label class="source-option">
+
+                            <input
+                                type="radio"
+                                name="backgroundType"
+                                value="youtube"
+                            >
+
+                            <span>
+                                YouTube
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <!-- URL -->
+
+                    <label
+                        for="backgroundUrl"
+                        class="form-label"
+                    >
+                        URL
+                    </label>
+
+
+                    <input
+                        id="backgroundUrl"
+                        class="background-url"
+                        type="url"
+                        placeholder="Paste image URL..."
+                        autocomplete="off"
+                    >
+
+
+                    <p
+                        id="backgroundHelp"
+                        class="form-help"
+                    >
+                        Use a direct public image URL.
+                    </p>
+
+
+                    <!-- Preview -->
+
+                    <div
+                        id="backgroundPreview"
+                        class="background-preview"
+                    >
+
+                        <div class="preview-placeholder">
+                            Preview will appear here
+                        </div>
+
+                    </div>
+
+
+                    <!-- Actions -->
+
+                    <div class="modal-actions">
+
+                        <button
+                            id="resetBackground"
+                            class="secondary-button"
+                            type="button"
+                        >
+                            Reset
+                        </button>
+
+
+                        <div class="modal-actions-right">
+
+                            <button
+                                id="previewBackground"
+                                class="secondary-button"
+                                type="button"
+                            >
+                                Preview
+                            </button>
+
+
+                            <button
+                                id="applyBackground"
+                                class="primary-button"
+                                type="button"
+                            >
+                                Apply
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/locations.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/background.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
