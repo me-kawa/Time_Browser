@@ -96,20 +96,6 @@ body {
     letter-spacing: 0.18em;
 }
 
-.author-name {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 38px;
-    height: 38px;
-
-    border: 2px solid currentColor;
-    border-radius: 50%;
-
-    font-size: 21px;
-)
 
 .theme-toggle {
     width: 42px;
