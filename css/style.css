@@ -97,10 +97,18 @@ body {
 }
 
 .author-name {
-    font-size: 18px;
-    font-weight: 700;
+    display: flex;
 
-    letter-spacing: 0.18em;
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    border: 2px solid currentColor;
+    border-radius: 50%;
+
+    font-size: 21px;
 )
 
 .theme-toggle {
