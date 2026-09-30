@@ -122,6 +122,20 @@ body {
     transform: rotate(15deg);
 }
 
+/* Wadah untuk menumpuk judul dan author secara vertikal */
+.brand-text-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; /* Jarak antara TIME BROWSER dan by me-kawa */
+}
+
+/* Styling untuk teks author agar lebih kecil */
+.author-subtitle {
+    font-size: 11px;       /* Ukuran font lebih kecil */
+    font-weight: 500;      /* Ketebalan font */
+    letter-spacing: 0.1em; /* Mengatur jarak spasi agar tidak terlalu renggang */
+    opacity: 0.7;          /* Memberikan efek sedikit pudar agar elegan (opsional) */
+}
 
 /* ---------- Search ---------- */
 
